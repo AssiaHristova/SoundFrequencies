@@ -1,0 +1,61 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h1 class="text-center">NEWS</h1>
+
+            {% if request.user.is_authenticated %}
+
+                {% for article in user_articles %}
+
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <img class="" src="{{ article.image_url }}" width="650px" alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="text-center">{{ article.title }}</h3>
+                        <p>{{ article.date }}</p>
+                        <p>By <strong>{{ article.author }}</strong></p>
+                        <p>{{ article.text }}</p>
+                        <p>Source: {{ article.source }}</p>
+                        <a href="{% url 'article create' %}" class="btn btn-success">Add Article</a>
+                        <a href="{% url 'article update' article.id %}" class="btn btn-primary">Update</a>
+                        <a href="{% url 'article delete' article.id %}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+                {% for article in articles %}
+                    {% if article not in user_articles %}
+
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <img class="" src="{{ article.image_url }}" width="650px" alt="">
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="text-center">{{ article.title }}</h3>
+                            <p>{{ article.date }}</p>
+                            <p>By <strong>{{ article.author }}</strong></p>
+                            <p>{{ article.text }}</p>
+                            <p>Source: {{ article.source }}</p>
+                            <a href="{% url 'article create' %}" class="btn btn-success">Add Article</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+
+            {% else %}
+
+                <p>Please Log in to your account or Sign up!</p>
+                <a href="{% url 'log in' %}" class="btn btn-success">Log In</a>
+                <a href="{% url 'sign up' %}" class="btn btn-success">Sign Up</a>
+
+            {% endif %}
+
+    </div>
+
+
+
+{% endblock %}

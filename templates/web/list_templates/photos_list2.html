@@ -1,0 +1,24 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+
+    <div class="container">
+        <h1 class="text-center">PHOTOS</h1>
+            {% for folder in folders %}
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <h6 class="text-center">{{ folder.name }}</h6>
+                    </div>
+                    {% for photo_set in folder %}
+                    <div class="col-md-6">
+                        <img class="" src="{{ photo.file.url }}" width="250px" alt="">
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <p><strong>See all Events <a href="{% url 'events list' %}">here</a></strong></p>
+
+        </div>
+
+{% endblock %}

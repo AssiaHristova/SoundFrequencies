@@ -1,0 +1,53 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"  style="margin-bottom:2%">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarNavDropdown" >
+            <ul class="navbar-nav">
+                <li><a class="nav-link" href="{% url 'events list' %}"><strong>Events</strong></a></li>
+                <li><a class="nav-link" href="{% url 'artists list' %}"><strong>Artists</strong></a></li>
+                <li><a class="nav-link" href="{% url 'releases list' %}"><strong>Releases</strong></a></li>
+                <li><a class="nav-link" href="{% url 'photos list' %}"><strong>Photos</strong></a></li>
+                <li><a class="nav-link" href="{% url 'merches list' %}"><strong>Merchandise</strong></a></li>
+                <li><a class="nav-link" href="{% url 'articles list' %}"><strong>News</strong></a></li>
+            </ul>
+         <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+             <h2>SOUND </h2>
+                <a class="navbar-brand" href="{% url 'home page' %}">
+                    <img src="{% static 'shared/logo.png' %}" alt="Logo" style="width:60px;">
+                </a>
+             <h2>FREQUENCIES</h2>
+         </div>
+
+            <ul class="navbar-nav ml-auto">
+                {% if request.user.is_authenticated %}
+                    <li><a class="nav-link" href="{% url 'profile details' %}"><strong>My Profile</strong></a></li>
+                    <li><a class="nav-link" href="{% url 'profile uploads' %}"><strong>My Content</strong></a></li>
+                    <li><a class="nav-link" href="{% url 'log out' %}"><strong>Log Out</strong></a></li>
+                {% else %}
+                    <li><a class="nav-link" href="{% url 'log in' %}"><strong>Log In</strong></a></li>
+                    <li><a class="nav-link" href="{% url 'sign up' %}"><strong>Sign Up</strong></a></li>
+                {% endif %}
+                <li><a class="nav-link" href="url 'about page' %}"><strong>About Us</strong></a></li>
+                <li><a class="nav-link" href=" url 'contact page' %}"><strong>Contacts Us</strong></a></li>
+            </ul>
+         </div>
+
+      </nav>
+
+<div class="container-fluid fixed-top; padding-top:20px">
+    <div class="row">
+        <div class="ml-auto col-auto">
+            {% if request.user.is_authenticated %}
+            <a class="alert alert-primary">Hello,  <a href= "{% url 'profile details' %}>{{ request.user.username }}</a>
+                <a href="{% url 'log out' %}">Log Out</a>
+            {% else %}
+                <a href="{% url 'log in' %}">Log In</a>
+                <a href="{% url 'sign up' %}">Sign Up</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,16 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+        <h1 class="text-center">UPDATE EVENT</h1>
+
+                   <div class="m-2">
+                        <form method="post" class="furniture-form" action="{% url 'event update' event.id %}" enctype="multipart/form-data">
+                             {% csrf_token %}
+                             {{ form.as_p }}
+                             <button class="btn btn-primary mt-2" type="submit">UPDATE</button>
+                        </form>
+                   </div>
+
+
+{% endblock %}

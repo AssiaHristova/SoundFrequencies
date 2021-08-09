@@ -1,0 +1,16 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+        <h1 class="text-center">CREATE ARTICLE</h1>
+
+            <div class="card">
+                <form method="post" class="furniture-form" autocomplete="on" action="{% url 'article create' %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      {{ form }}
+                      <button class="btn btn-primary mt-2" type="submit">Create</button>
+                </form>
+            </div>
+
+
+{% endblock %}

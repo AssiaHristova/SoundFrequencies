@@ -1,0 +1,19 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+<h1 class="text-center">UPLOAD PHOTOS</h1>
+    <p>Please select an event from the available list or add a new event here:
+            <a href="'{% url 'event create' %}" class="btn btn-success" type="submit">Create Event</a></p>
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <form method="post" action {% url 'photo create' %} class="furniture-form" autocomplete="on" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button class="btn btn-primary mt-2" type="submit">Create</button>
+                    </form>
+                </div>
+            </div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="text-center">
+    <h1>Hello, {{ request.user.username }}!</h1>
+    <h5>This is your profile</h5>
+    <h5>Please complete all empty fields!</h5>
+    {% if profile.profile_image %}
+        <img class="rounded-circle mb-3" src="{{ profile.profile_image.url }}" alt="Generic placeholder image" width="140" height="140">
+    {% else %}
+        <img class="rounded-circle mb-3" src="{% static 'shared/random_profile_image.jpg' %}" alt="Generic placeholder image" width="140" height="140">
+    {% endif %}
+</div>
+
+<div class="container">
+    <h5 class="card-title">Personal Info</h5>
+        <div class="card-body">
+            <p class="card-text">First Name: <strong>{{ profile.first_name }}</strong></p>
+            <p class="card-text">Last Name: <strong>{{ profile.last_name }}</strong></p>
+            <p class="card-text">Age: <strong>{{ profile.age }}</strong></p>
+            <p class="card-text">Gender: <strong>{{ profile.gender }}</strong></p>
+        </div>
+</div>
+
+
+    <form method="post" action="{% url 'profile details' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-success" type="submit">UPDATE</button>
+    </form>
+
+
+{% endblock %}

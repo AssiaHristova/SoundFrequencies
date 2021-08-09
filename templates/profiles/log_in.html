@@ -1,0 +1,14 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <form class="w-50 m-auto" method="post" style="border: 1px solid grey; margin: 10% 0%; padding: 5% 5%" action="{% url 'log in'%}">
+      <h2>Log in</h2>
+        {% csrf_token %}
+        {{ form }}
+      <button class="btn btn-primary" type="submit">Log in</button>
+    </form>
+</div>
+
+{% endblock %}

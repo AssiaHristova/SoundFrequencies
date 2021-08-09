@@ -1,0 +1,28 @@
+{% extends 'shared/base.html' %}
+
+
+{% block content %}
+
+
+        <div class="container">
+            <h1 class="text-center">RELEASES</h1>
+            {% for release in release_list %}
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <img class="" src="{{ release.image.url }}" width="550px" alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="text-center">{{ release.title }}</h3>
+                        <p><strong>Artist: </strong>{{ release.artist }}</p>
+                        <p><strong>Date: </strong>{{ release.date }}</p>
+                        <p><strong>Description: </strong>{{ release.description }}</p>
+                        <p><strong>Price: {{ release.price }}</strong></p>
+                        <p><strong>Link to purchase: {{ release.link_to_purchase }}</strong></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'shared/base.html' %}
+
+
+{% block content %}
+
+
+<div class="container">
+    <h1 class="text-center" >My Content</h1>
+</div>
+
+<div class="container">
+    <div class="row-cols-3">
+        <h3 class="card-header">My Articles: </h3>
+
+            {% if artcles %}
+                {% for article in articles %}
+                    {{ article.title }}
+                    <img class="rounded-circle mb-3" src="{{ article.image_url }}" alt="Generic placeholder image" width="140" height="140">
+                    <a href="{% url 'article update' article.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'article delete' article.id %}" class="btn btn-danger">Delete</a>
+                {% endfor %}
+            {% endif %}
+
+    <a href="{% url 'article create' %}" class="btn btn-success">Add Article</a>
+    </div>
+</div>
+
+        <h3 class="card-header">My Photos: </h3>
+
+             {% for photo in photos %}
+
+                    <div class="card" style="width: 18rem;">
+                          <img class="card-img-top" src="{{ photo.image.url }}" width="250px" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ photo.event.name }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ photo.name }}</h6>
+                                <a href="{% url 'photo create' %}" class="btn btn-success" style="">Add Photo</a>
+                                <a href="{% url 'photo update' photo.id %}" class="btn btn-primary">Update</a>
+                                <a href="{% url 'photo delete' photo.id %}" class="btn btn-danger">Delete</a>
+                            </div>
+                    </div>
+
+             {% endfor %}
+
+
+    <h3 class="card-header">My Events: </h3>
+    {% if events %}
+        {% for event in events %}
+              <div class="row text-center">
+                    <div class="col-md-6">
+                        <img class="" src="{{ event.image.url }}" width="650px" alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="text-center">{{ event.name }}</h3>
+                        <p><strong>City: </strong>{{ event.city }}</p>
+                        <p><strong>Location: </strong>{{ event.location }}</p>
+                        <p><strong>Date: </strong>{{ event.date }}</p>
+                        <p><strong>Description: </strong>{{ event.description }}</p>
+                        <p><strong>Buy tickets here: <a href="{{ event.tickets_link }}"></a></strong></p>
+                        <a href="{% url 'event update' event.id %}" class="btn btn-primary">Edit</a>
+                        <a href="{% url 'event delete' event.id %}" class="btn btn-danger">Delete</a>
+                        <a href="{% url 'event create' %}" class="btn btn-success">Add Event</a>
+                    </div>
+              </div>
+        {% endfor %}
+    {% endif %}
+
+
+{% endblock %}
+

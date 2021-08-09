@@ -1,0 +1,17 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+        <h1 class="text-center">UPDATE PHOTO</h1>
+             <div class="m-auto d-flex justify-content-center">
+                   <div class="m-2">
+                        <form method="post" action="{% url 'photo update' photo.id %}" enctype="multipart/form-data">
+                              {% csrf_token %}
+                              {{ form }}
+                              <button class="btn btn-primary" type="submit">UPDATE</button>
+                        </form>
+                   </div>
+             </div>
+
+
+{% endblock %}
