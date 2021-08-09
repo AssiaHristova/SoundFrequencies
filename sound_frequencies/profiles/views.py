@@ -54,7 +54,7 @@ class ProfileDetailsView(LoginRequiredMixin, FormView):
         self.object.profile_image = form.cleaned_data['profile_image']
         self.object.first_name = form.cleaned_data['first_name']
         self.object.last_name = form.cleaned_data['last_name']
-        self.object.last_name = form.cleaned_data['age']
+        self.object.age = form.cleaned_data['age']
         self.object.gender = form.cleaned_data['gender']
         if form.is_valid():
             self.object.save()
@@ -72,7 +72,6 @@ class ProfileUploadsView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['profile'] = self.request.user
         articles = Article.objects.filter(user_id=self.request.user.id)
         events = Event.objects.filter(user_id=self.request.user.id)
         photos = Photo.objects.filter(user_id=self.request.user.id)
