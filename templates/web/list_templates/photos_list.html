@@ -5,10 +5,16 @@
 
         <h1 class="text-center">PHOTOS</h1>
 
-        {% if request.user.is_authenticated %}
+        {% if not request.user.is_authenticated %}
 
+                <h6 class="text-center">Please Log in to your account or Sign up!</h6>
+                <a href="{% url 'log in' %}" class="btn btn-success">Log In</a>
+                <a href="{% url 'sign up' %}" class="btn btn-primary">Sign Up</a>
+
+        {% else %}
 
             {% if user_photos %}
+
                 <h2>My Photos</h2>
 
                     {% for photo in user_photos %}
@@ -48,16 +54,6 @@
                 {% endfor %}
                 <a href="{% url 'photo create' %}" class="btn btn-success" style="">Add Photo</a>
             {% endfor %}
-
-        {% else %}
-
-            {% if request.user.is_authenticated %}
-                <a href="{% url 'photo create' %}" class="btn btn-success">Add Photo</a>
-            {% else %}
-                <h6 class="text-center">Please Log in to your account or Sign up!</h6>
-                <a href="{% url 'log in' %}" class="btn btn-success">Log In</a>
-                <a href="{% url 'sign up' %}" class="btn btn-primary">Sign Up</a>
-            {% endif %}
 
         {% endif %}
     </div>
