@@ -9,7 +9,6 @@ from sound_frequencies.web.models import Event, Article, Photo
 
 
 class EventForm(forms.ModelForm):
-
     class Meta:
         model = Event
         exclude = ['user',]

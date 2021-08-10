@@ -1,9 +1,9 @@
-from django.views import View
+from django.shortcuts import render
 
 
-class AboutUsView(View):
-    template_name = 'general/about_us.html'
+def about_page(request):
+    return render(request, 'general/about_us.html')
 
 
-class ContactUsView(View):
-    template_name = 'general/contact_us.html'
+def contacts_page(request):
+    return render(request, 'general/contact_us.html')

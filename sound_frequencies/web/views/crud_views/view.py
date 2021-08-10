@@ -30,8 +30,6 @@ class EventUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         event = form.save(commit=False)
-        for photo in self.request.FILES['image']:
-            event.photo_set.append(photo)
         event.save()
         return super().form_valid(form)
 
