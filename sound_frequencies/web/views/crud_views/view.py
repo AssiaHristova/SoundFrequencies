@@ -43,7 +43,7 @@ class EventDeleteView(LoginRequiredMixin, DeleteView):
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     template_name = 'web/crud_templates/article_create.html'
     model = Article
-    fields = ['title', 'source', 'author', 'date', 'image_url', 'text']
+    form_class = ArticleForm
     success_url = reverse_lazy('articles list')
 
     def form_valid(self, form):
@@ -63,7 +63,7 @@ class ArticleUpdateView(LoginRequiredMixin, UpdateView):
 
 class ArticleDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'web/crud_templates/article_delete.html'
-    model = Event
+    model = Article
     success_url = reverse_lazy('articles list')
 
 
@@ -77,10 +77,7 @@ class PhotoCreateView(LoginRequiredMixin, FormView):
         photo = form.save(commit=False)
         photo.image = self.request.FILES['image']
         photo.user = self.request.user
- #       try:
         photo.save()
-   #     except Exception as e:
-    #        raise Http404(f'No image uploaded. + {e}')
         return super().form_valid(form)
 
 

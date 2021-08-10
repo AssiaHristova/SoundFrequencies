@@ -39,7 +39,9 @@
             <h6 class="text-center">{{ event.name }}</h6>
 
                 {% for photo in photos_ordered_by_event %}
+
                     {% if photo not in user_photos %}
+                        {% if photo.event == event  %}
                     <div class="row">
                         <div class="col-md-4">
                             <div class="card" style="width: 18rem;">
@@ -50,6 +52,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                     {% endif %}
                 {% endfor %}
                 <a href="{% url 'photo create' %}" class="btn btn-success" style="">Add Photo</a>
