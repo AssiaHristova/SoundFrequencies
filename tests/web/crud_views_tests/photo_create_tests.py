@@ -21,9 +21,8 @@ class PhotoCreateTest(SoundFrequenciesTestCase):
             tickets_link='https://articles.bg',
             user=self.user
         )
-        path_to_image = join(settings.BASE_DIR, 'tests', 'testing_utils', 'test_image.jpg')
         name = 'Test photo'
-        image = open(path_to_image, 'rb').read()
+        image = 'path/to/image/.jpg'
 
         self.client.force_login(self.user)
         response = self.client.post(reverse('photo create'), data={
