@@ -28,11 +28,6 @@ class EventUpdateView(LoginRequiredMixin, UpdateView):
     form_class = EventForm
     success_url = reverse_lazy('events list')
 
-    def form_valid(self, form):
-        event = form.save(commit=False)
-        event.save()
-        return super().form_valid(form)
-
 
 class EventDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'web/crud_templates/event_delete.html'
