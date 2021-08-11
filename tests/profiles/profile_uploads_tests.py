@@ -5,7 +5,7 @@ from tests.testing_utils.base_test_data import SoundFrequenciesTestCase
 
 
 class ProfileUploadsTest(SoundFrequenciesTestCase):
-    def test_getUploads_whenLoggedInUser__WhenNoUploads__shouldGetUploads(self):
+    def test_getUploads_whenLoggedInUser__WhenNoUploads__shouldGetEmpty(self):
         self.client.force_login(self.user)
         response = self.client.get(reverse('profile uploads'))
 

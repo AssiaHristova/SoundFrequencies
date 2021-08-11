@@ -20,7 +20,7 @@ class ArticleForm(BootstrapFormMixin, forms.ModelForm):
 class PhotoForm(BootstrapFormMixin, forms.ModelForm):
     class Meta:
         model = Photo
-        exclude = ['user', 'name']
+        exclude = ['user', ]
 
 
 
