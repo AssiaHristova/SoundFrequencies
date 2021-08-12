@@ -37,6 +37,13 @@ class PhotosDetailsTest(SoundFrequenciesTestCase):
             user=self.user
         )
 
+        photo_2 = Photo.objects.create(
+            name='Test photo',
+            image='path/to/image.jpg',
+            event=event,
+            user=self.user_2
+        )
+
         self.client.force_login(self.user)
         response = self.client.get(reverse('photos list'))
 
@@ -46,6 +53,6 @@ class PhotosDetailsTest(SoundFrequenciesTestCase):
 
         self.assertListEqual([photo], user_photos)
         self.assertListEqual([event], events_with_photos)
-        self.assertListEqual([photo], photos_ordered_by_event)
+        self.assertListEqual([photo, photo_2], photos_ordered_by_event)
 
 
