@@ -13,13 +13,15 @@ class PhotoCreateTest(SoundFrequenciesTestCase):
     def test_postCreatePhoto_whenLoggedInUserCreatePhoto__shouldCreate(self):
         path_to_image = join(settings.BASE_DIR, 'tests', 'testing_utils', 'test_image.jpg')
         file_name = f'{random.randint(1, 1000)}-test_image.jpg'
+        path_to_image_2 = join(settings.BASE_DIR, 'tests', 'testing_utils', 'test_image_2.jpg')
+        file_name_2 = f'{random.randint(1, 1000)}-test_image_2.jpg'
         image = SimpleUploadedFile(
             name=file_name,
             content=open(path_to_image, 'rb').read(),
             content_type='image/jpeg'
         )
         image_2 = SimpleUploadedFile(
-            name=file_name,
+            name=file_name_2,
             content=open(path_to_image, 'rb').read(),
             content_type='image/jpeg'
         )

@@ -18,7 +18,7 @@ class SoundFrequenciesTestCase(TestCase):
         self.client = Client()
         self.user = UserModel.objects.create_user(username=self.logged_in_user_username, password=self.logged_in_user_password)
         self.user_2 = UserModel.objects.create_user(username=self.logged_in_user_2_username, password=self.logged_in_user_2_password)
-        destroy_test_db()
+
 
 
 

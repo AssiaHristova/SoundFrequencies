@@ -1,6 +1,4 @@
 from datetime import datetime
-from io import BytesIO
-from PIL import Image
 from django.views.generic import ListView
 
 from sound_frequencies.web.models import Event, Merchandise, Photo, Artist, Release, Article
