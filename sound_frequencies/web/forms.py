@@ -11,7 +11,7 @@ class EventForm(BootstrapFormMixin, forms.ModelForm):
         exclude = ['user',]
 
 
-class ArticleForm(BootstrapFormMixin, forms.ModelForm):
+class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
         exclude = ['user', ]
