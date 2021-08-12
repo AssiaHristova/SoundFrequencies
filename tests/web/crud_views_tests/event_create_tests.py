@@ -1,3 +1,8 @@
+import random
+from os.path import join
+
+from django.conf import settings
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
 
 from sound_frequencies.web.models import Event
@@ -6,8 +11,14 @@ from tests.testing_utils.base_test_data import SoundFrequenciesTestCase
 
 class EventCreateTest(SoundFrequenciesTestCase):
     def test_postCreateEvent_whenLoggedInUserCreateEvent__shouldCreate(self):
+        path_to_image = join(settings.BASE_DIR, 'tests', 'testing_utils', 'test_image.jpg')
+        file_name = f'{random.randint(1, 1000)}-test_image.jpg'
+        image = SimpleUploadedFile(
+            name=file_name,
+            content=open(path_to_image, 'rb').read(),
+            content_type='image/jpeg'
+        )
         name = 'Test event'
-        image = 'path/to/image.jpg'
         city = 'test city'
         date = '2021-08-09'
         time = '16:00:00'
@@ -34,7 +45,7 @@ class EventCreateTest(SoundFrequenciesTestCase):
         event = user_events.first()
 
         self.assertEqual(name, event.name)
-        self.assertEqual(image, event.image)
+        self.assertTrue(str(event.image).endswith(file_name))
         self.assertEqual(city, event.city)
         self.assertEqual(date, str(event.date))
         self.assertEqual(time, str(event.time))
