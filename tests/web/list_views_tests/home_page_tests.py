@@ -29,7 +29,7 @@ class HomePageTest(SoundFrequenciesTestCase):
             location='Test location',
             image='path/to/image.png',
             description='test description',
-            date='2021-08-09',
+            date='2021-09-09',
             time='16:00:00',
             tickets_link='https://articles.bg',
             user=self.user
@@ -48,23 +48,23 @@ class HomePageTest(SoundFrequenciesTestCase):
 
         response = self.client.get(reverse('home page'))
 
-        release_to_show = response.context['release']
+        releases_to_show = list(response.context['releases'])
         event_to_show = response.context['event']
         merches = list(response.context['merch_list'])
 
         self.assertEqual(event, event_to_show)
-        self.assertEqual(release, release_to_show)
+        self.assertListEqual([release], releases_to_show)
         self.assertListEqual([merch_1], merches)
 
     def test_getHomePage__ifNoObjects__shouldGetEmpty(self):
         response = self.client.get(reverse('home page'))
 
-        release_to_show = response.context['release']
+        releases_to_show = list(response.context['releases'])
         event_to_show = response.context['event']
         merches = list(response.context['merch_list'])
 
         self.assertEqual(None, event_to_show)
-        self.assertEqual(None, release_to_show)
+        self.assertListEqual([], releases_to_show)
         self.assertListEqual([], merches)
 
 
