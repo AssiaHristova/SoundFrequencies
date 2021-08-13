@@ -1,11 +1,12 @@
-from sound_frequencies.secret_settings import *
+
 
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = 'django-insecure-v1kb(=on1j_q+k%#8fk8gd@=2t$z9=#(4qq7(-f5i85l^uro1#'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 

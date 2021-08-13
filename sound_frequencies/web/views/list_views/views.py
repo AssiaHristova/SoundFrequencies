@@ -11,7 +11,7 @@ class HomePageView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         release = Release.objects.order_by('date').last()
-        event = Event.objects.order_by('date').last()
+        event = Event.objects.filter(date__gt=datetime.today()).first()
         merch_list = Merchandise.objects.order_by('date')[:3]
         context = {'release': release,
                    'event': event,
