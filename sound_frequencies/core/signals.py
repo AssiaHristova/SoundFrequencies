@@ -14,7 +14,3 @@ def create_profile(sender, instance, created, **kwargs):
         profile.save()
 
 
-#@receiver(pre_save, sender=Profile)
-#def profile_to_save(sender, instance, **kwargs):
- #   if instance.first_name and instance.last_name:
-  #      instance.is_complete = True
