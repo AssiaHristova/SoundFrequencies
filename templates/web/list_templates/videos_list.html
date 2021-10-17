@@ -1,0 +1,50 @@
+{% extends 'shared/base.html' %}
+{% load embed_video_tags %}
+
+
+{% block content %}
+
+
+        <div class="container">
+            <h1 class="text-center">VIDEOS</h1>
+            {% for video in video_list %}
+                <div class="row text-center">
+                    <div class="col-md-6">
+                    {% if video.file %}
+                        <video
+                            id="my-video"
+                            class="video-js"
+                            controls
+                            preload="auto"
+                            width="640"
+                            height="264"
+                            {% if video.image %}
+                            poster="{{ video.image.url }}"
+                            {% endif %}
+                            data-setup="{
+                              'controls': true,
+                              'autoplay': false,
+                              'preload': 'auto'
+                        }"
+                                            >
+                                <source src="{{ video.file.url }}" type="video/mp4" />
+                        </video>
+                    {% else %}
+                        {% video video.file_url 'small' %}
+                    {% endif %}
+
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="text-center">{{ video.title }}</h3>
+                        <p><strong>Artist: </strong>{{ video.artist }}</p>
+                        <p><strong>Date: </strong>{{ video.date }}</p>
+                        <p><strong>Description: </strong>{{ video.description }}</p>
+                        <p><strong>Event: {{ video.event }}</strong></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+
+{% endblock %}

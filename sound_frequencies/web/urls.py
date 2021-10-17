@@ -4,8 +4,7 @@ from sound_frequencies.web.views.crud_views.view import EventCreateView, EventUp
     ArticleCreateView, ArticleUpdateView, ArticleDeleteView, PhotoCreateView, PhotoUpdateView, PhotoDeleteView
 from sound_frequencies.web.views.general.views import about_page, contacts_page
 from sound_frequencies.web.views.list_views.views import HomePageView, EventListView, ArtistListView, ReleaseListView, \
-    PhotoListView, ArticleListView, MerchandiseListView
-
+    PhotoListView, ArticleListView, MerchandiseListView, VideoListView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home page'),
@@ -15,6 +14,7 @@ urlpatterns = [
     path('releases/', ReleaseListView.as_view(), name='releases list'),
     path('articles/', ArticleListView.as_view(), name='articles list'),
     path('merches/', MerchandiseListView.as_view(), name='merches list'),
+    path('videos/', VideoListView.as_view(), name='videos list'),
     path('events/create/', EventCreateView.as_view(), name="event create"),
     path('events/update/<int:pk>', EventUpdateView.as_view(), name="event update"),
     path('events/delete/<int:pk>', EventDeleteView.as_view(), name="event delete"),

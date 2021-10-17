@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.views.generic import ListView
 
-from sound_frequencies.web.models import Event, Merchandise, Photo, Artist, Release, Article
+from sound_frequencies.web.models import Event, Merchandise, Photo, Artist, Release, Article, Video
 
 
 class HomePageView(ListView):
@@ -10,10 +10,10 @@ class HomePageView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        releases = Release.objects.order_by('date')[:3]
+        video = Video.objects.last()
         event = Event.objects.filter(date__gt=datetime.today()).first()
         merch_list = Merchandise.objects.order_by('date')[:3]
-        context = {'releases': releases,
+        context = {'video': video,
                    'event': event,
                    'merch_list': merch_list
                    }
@@ -83,5 +83,10 @@ class ArticleListView(ListView):
 class MerchandiseListView(ListView):
     model = Merchandise
     template_name = 'web/list_templates/merchandise_list.html'
+
+
+class VideoListView(ListView):
+    model = Video
+    template_name = 'web/list_templates/videos_list.html'
 
 

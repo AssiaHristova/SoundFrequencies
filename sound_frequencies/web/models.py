@@ -1,5 +1,5 @@
 import sys
-
+from embed_video.fields import EmbedVideoField
 from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.utils import timezone
@@ -114,6 +114,36 @@ class Merchandise(models.Model):
     color = models.CharField(max_length=15, choices=COLOR_CHOICES)
     size = models.CharField(max_length=20, choices=SIZE_CHOICES, blank=True)
     link_to_purchase = models.URLField()
+
+    def __str__(self):
+        return self.title
+
+
+class Mix(models.Model):
+    title = models.CharField(max_length=100)
+    file = models.FileField(upload_to='mixes/files', blank=True)
+    file_url = models.URLField(blank=True)
+    image = models.ImageField(upload_to='mixes/images', blank=True)
+    date = models.DateField()
+    description = models.TextField()
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, blank=True)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+
+class Video(models.Model):
+    title = models.CharField(max_length=100)
+    file = models.FileField(upload_to='videos/files', blank=True)
+    file_url = EmbedVideoField(blank=True)
+    date = models.DateField()
+    description = models.TextField()
+    image = models.ImageField(upload_to='videos/images', blank=True)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, blank=True)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, blank=True)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from sound_frequencies.web.models import Article, Artist, Release, Photo, Event, Merchandise
+from sound_frequencies.web.models import Article, Artist, Release, Photo, Event, Merchandise, Video, Mix
 
 
 @admin.register(Article)
@@ -37,5 +37,15 @@ class EventAdmin(admin.ModelAdmin):
 
 @admin.register(Merchandise)
 class MerchandiseAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Video)
+class VideoAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Mix)
+class MixAdmin(admin.ModelAdmin):
     pass
 
